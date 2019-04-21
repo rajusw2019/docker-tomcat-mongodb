@@ -1,2 +1,4 @@
 # docker-tomcat-mongodb
-docker-tomcat-mongodb
+
+
+docker-compose up -d
