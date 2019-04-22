@@ -18,7 +18,7 @@ services:
       - my-mongodb
 
   my-mongodb:
-    image: rajusw804/mongo:v1
+    image: mongo
     container_name: my-mongodb
     ports:
       - 27017:27017
@@ -38,7 +38,7 @@ services:
   my-mongoclient:
     # build will get tagged with 'image'
     build: ./my-mongoclient
-    image: rajusw804/my-mongoclient:v1
+    image: my-mongoclient
     container_name: my-mongoclient
     environment:
       - MONGO_SERVER=my-mongodb
