@@ -1,22 +1,12 @@
-version: '3.6'
-
+version: '2.1'
 
 services:
-  petclinic:
-    image: rajusw804/tomcat:v1
-    container_name: tomcat
+  tomcat:
+    image: 'rajusw804/tomcat:v1'
     ports:
-      - 8080:8080
-    environment:
-      - JAVA_OPTS=-javaagent:/xrebel.jar -Dmongo.host=db
-    volumes:
-      - ./xrebel.jar:/xrebel.jar
-      - ./petclinic.war:/usr/local/tomcat/webapps/petclinic.war
-    networks:
-      - mongo_net
+      - '8080:8080'
     depends_on:
       - my-mongodb
-
   my-mongodb:
     image: mongo
     container_name: my-mongodb
@@ -34,7 +24,6 @@ services:
       - mongoconfig:/data/configdb
     networks:
       - mongo_net
-
   my-mongoclient:
     # build will get tagged with 'image'
     build: ./my-mongoclient
@@ -49,12 +38,10 @@ services:
       - mongo_net
     depends_on:
       - my-mongodb
-    
 volumes:
   # default dir on Ubuntu: /var/lib/docker/volumes
   mongodb:
   mongoconfig:
-
 networks:
   mongo_net:
     driver: bridge
