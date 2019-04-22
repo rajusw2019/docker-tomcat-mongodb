@@ -2,13 +2,13 @@ version: '2.1'
 
 services:
   tomcat:
-    image: 'rajusw804/tomcat:v1'
+    image: rajusw804/tomcat:v2
     ports:
-      - '8080:8080'
+      - 8080:8080
     depends_on:
       - my-mongodb
   my-mongodb:
-    image: mongo
+    image: rajusw804/mongo:v2
     container_name: my-mongodb
     ports:
       - 27017:27017
@@ -26,8 +26,7 @@ services:
       - mongo_net
   my-mongoclient:
     # build will get tagged with 'image'
-    build: ./my-mongoclient
-    image: my-mongoclient
+    image: rajusw804/my-mongoclient:v2
     container_name: my-mongoclient
     environment:
       - MONGO_SERVER=my-mongodb
